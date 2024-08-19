@@ -40,6 +40,8 @@ public class TelegramBot extends TelegramLongPollingBot {
         String text = update.getMessage().getText();
         sendMessage.setChatId(chatId);
 
+        // hey somebody save me
+
         try {
             if (text.equalsIgnoreCase("Hi") || text.equalsIgnoreCase("Привет")) {
                 logger.info("Someone said Hi");
