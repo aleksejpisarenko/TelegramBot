@@ -144,7 +144,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         connection.setRequestMethod("HEAD");
                         long lastModified = connection.getLastModified();
 
-                        if (lastModified > Main.lastRegistredModifiedDate) {
+                        if (true) {
                             Main.lastRegistredModifiedDate = lastModified;
                             sendMessage.setText(STR."New schedule arrived!\n\{SCHEDULE_LINK}");
                             bot.execute(sendMessage);
