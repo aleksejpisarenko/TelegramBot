@@ -90,7 +90,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             if (text.equalsIgnoreCase("/disableScheduleNotifications")) {
                 logger.info("Disabling schedule notifications");
                 isScheduleEnabled = false;
-                sendMessage.setText("Current status of schedule notif. service is " + isScheduleEnabled);
+                sendMessage.setText("Schedule notification update system is turned off!");
                 this.execute(sendMessage);
                 return;
             }
@@ -155,7 +155,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         logger.error(STR."Error occured, cause -> \{e}");
                     }
                     try {
-                        Thread.sleep(3500);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         logger.error(STR."Error occured with thread sleeping object -> \{this}, cause -> \{e}");
                     }
