@@ -144,7 +144,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         connection.setRequestMethod("HEAD");
                         long lastModified = connection.getLastModified();
 
-                        if (true) {
+                        if (lastModified > Main.lastRegistredModifiedDate) {
                             Main.lastRegistredModifiedDate = lastModified;
                             sendMessage.setText(STR."New schedule arrived!\n\{SCHEDULE_LINK}");
                             bot.execute(sendMessage);
@@ -155,7 +155,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         logger.error(STR."Error occured, cause -> \{e}");
                     }
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(60000);
                     } catch (InterruptedException e) {
                         logger.error(STR."Error occured with thread sleeping object -> \{this}, cause -> \{e}");
                     }
