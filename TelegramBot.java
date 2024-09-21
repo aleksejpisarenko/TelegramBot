@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -146,6 +147,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                         if (lastModified > Main.lastRegistredModifiedDate) {
                             Main.lastRegistredModifiedDate = lastModified;
+                            updateDB(lastModified);
                             sendMessage.setText(STR."New schedule arrived!\n\{SCHEDULE_LINK}");
                             bot.execute(sendMessage);
                             logger.info("Bot has sent a schedule link to users");
@@ -164,6 +166,24 @@ public class TelegramBot extends TelegramLongPollingBot {
                 }
             }
 
+        }
+
+        private static void updateDB(long lastModified) {
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException e) {
+                logger.error("PostgreSQL driver was not found -> {}" , String.valueOf(e));
+            }
+            String insertQuery = "INSERT INTO schedule (lastmodified) values (?)";
+
+            try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
+                   PreparedStatement ps = connection.prepareStatement(insertQuery))
+            {
+                ps.setLong(1, lastModified);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                logger.error("Something went wrong with connection to DB, cause -> {}", String.valueOf(e));
+            }
         }
     }
 
