@@ -11,9 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class TelegramBot extends TelegramLongPollingBot {
     private static final String MENU = "This bot can get a local time, my age,\nschool schedule, and some more secrets" +
@@ -42,52 +39,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         sendMessage.setChatId(chatId);
 
         try {
-            if (text.equalsIgnoreCase("/getlocaltime")) {
-                logger.info("Someone got local time");
-                DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy - HH:mm:ss");
-                sendMessage.setText(STR."Local time is : \{LocalDateTime.now().format(dateTimeFormatter)} EEST");
-                this.execute(sendMessage);
-                return;
-            }
-
-            if (text.equalsIgnoreCase("/getmyage")) {
-                logger.info("Someone got my age");
-                LocalDateTime birthday = LocalDateTime.of(2008, 10, 7, 12, 0, 0);
-                LocalDateTime current = LocalDateTime.now();
-                int age = 0;
-
-                if (current.getDayOfYear() >= birthday.getDayOfYear()) {
-                    age += current.getYear() - birthday.getYear();
-                    sendMessage.setText(STR."I am \{age} years old:)");
-                    this.execute(sendMessage);
-                    return;
-                } else {
-                    age += current.getYear() - birthday.getYear() - 1;
-                    sendMessage.setText(STR."I am \{age} years old:)");
-                    this.execute(sendMessage);
-                    return;
-                }
-            }
-
-            if (text.equalsIgnoreCase("/howtoalarm")) {
-                sendMessage.setText("Choose command - /setalarm HH:mm:ss \n in HH:mm:ss place' you should put the time(24-h time format only)");
-                this.execute(sendMessage);
-                return;
-            }
-
-            if (text.contains("/setalarm")) {
-                String line = text.substring(10);
-                LocalTime time = LocalTime.parse(line);
-
-                AlarmTask alarmTask = new AlarmTask(this, chatId, time);
-                Thread thread = new Thread(alarmTask);
-                thread.start();
-
-                sendMessage.setText(STR."Alarm is set for \{time.toString()}");
-                this.execute(sendMessage);
-                return;
-            }
-
             if (text.equalsIgnoreCase("/disableScheduleNotifications")) {
                 logger.info("Disabling schedule notifications");
                 isScheduleEnabled = false;
@@ -110,7 +61,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             sendMessage.setText(MENU);
             this.execute(sendMessage);
         } catch (TelegramApiException e) {
-            System.out.println(STR."Something went wrong : \{e}");
+            System.out.println("Something went wrong : " + e);
         }
     }
 
@@ -121,7 +72,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             try {
                 SCHEDULE_LINK = new URL("https://j5vsk.lv/izmainas/ritdienai/izmainas.pdf");
             } catch (MalformedURLException e) {
-                logger.error(STR."FAILED TO INITIALIZE SCHEDULE_LINK, cause -> \{e}");
+                logger.error("FAILED TO INITIALIZE SCHEDULE_LINK, cause -> " + e);
                 throw new RuntimeException(e);
             }
         }
@@ -148,7 +99,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         if (lastModified > Main.lastRegistredModifiedDate) {
                             Main.lastRegistredModifiedDate = lastModified;
                             updateDB(lastModified);
-                            sendMessage.setText(STR."New schedule arrived!\n\{SCHEDULE_LINK}");
+                            sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
                             bot.execute(sendMessage);
                             logger.info("Bot has sent a schedule link to users");
                         }
@@ -172,13 +123,12 @@ public class TelegramBot extends TelegramLongPollingBot {
             try {
                 Class.forName("org.postgresql.Driver");
             } catch (ClassNotFoundException e) {
-                logger.error("PostgreSQL driver was not found -> {}" , String.valueOf(e));
+                logger.error("PostgreSQL driver was not found -> {}", String.valueOf(e));
             }
             String insertQuery = "INSERT INTO schedule (lastmodified) values (?)";
 
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
-                   PreparedStatement ps = connection.prepareStatement(insertQuery))
-            {
+                 PreparedStatement ps = connection.prepareStatement(insertQuery)) {
                 ps.setLong(1, lastModified);
                 ps.executeUpdate();
             } catch (SQLException e) {
@@ -186,48 +136,4 @@ public class TelegramBot extends TelegramLongPollingBot {
             }
         }
     }
-
-    private static class AlarmTask implements Runnable {
-        private final TelegramBot bot;
-        private final String chatId;
-        private final LocalTime alarmTime;
-
-        public AlarmTask(TelegramBot bot, String chatId, LocalTime alarmTime) {
-            this.bot = bot;
-            this.chatId = chatId;
-            this.alarmTime = alarmTime;
-        }
-
-        @Override
-        public void run() {
-            while (true) {
-                LocalTime curr = LocalTime.now();
-
-                if (curr.getHour() == alarmTime.getHour() &&
-                        curr.getMinute() == alarmTime.getMinute() &&
-                        curr.getSecond() == alarmTime.getSecond()) {
-                    try {
-                        for (int z = 0; z < 3; z++) {
-                            for (int i = 0; i < 15; i++) {
-                                SendMessage sendMessage = new SendMessage();
-                                sendMessage.setChatId(chatId);
-                                sendMessage.setText(String.valueOf(i));
-                                bot.execute(sendMessage);
-                            }
-                        }
-                    } catch (TelegramApiException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 }
-
-
