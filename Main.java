@@ -35,7 +35,7 @@ public class Main {
 
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
              Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("SELECT lastModified from schedule"))
+             ResultSet rs = statement.executeQuery("SELECT lastmodified from schedule"))
         {
             while (rs.next()) {
                 lastRegistredModifiedDate = rs.getLong("lastmodified");
