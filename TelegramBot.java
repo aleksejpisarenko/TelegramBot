@@ -60,7 +60,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             sendMessage.setText(MENU);
             this.execute(sendMessage);
         } catch (TelegramApiException e) {
-            System.out.println("Something went wrong : " + e);
+            logger.error("Something went wrong : " + e);
         }
     }
 
