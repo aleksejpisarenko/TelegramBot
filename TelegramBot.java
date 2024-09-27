@@ -72,13 +72,11 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
-            ResultSet rs = connection.createStatement().executeQuery("SELECT chatid FROM users");
-            ResultSet boolRS = connection.createStatement().executeQuery("SELECT isschenabled FROM users"))
+            ResultSet rs = connection.createStatement().executeQuery("SELECT chatid, isschenabled FROM users"))
         {
             while (rs.next()) {
-                boolRS.next();
-                String chId = rs.getString(1);
-                boolean isEnabled = boolRS.getBoolean(1);
+                String chId = rs.getString("chatid");
+                boolean isEnabled = rs.getBoolean("isschenabled");
                 if (isEnabled) {
                     isScheduleEnabled = true;
                     Thread thread = new Thread(new ScheduleCheck(this, chId));
@@ -121,8 +119,8 @@ public class TelegramBot extends TelegramLongPollingBot {
                         HttpURLConnection connection = (HttpURLConnection) SCHEDULE_LINK.openConnection();
                         connection.setRequestMethod("HEAD");
                         long lastModified = connection.getLastModified();
-                        // lastModified > Main.lastRegistredModifiedDate
-                        if (true) { // true only for testing!
+
+                        if (lastModified > Main.lastRegistredModifiedDate) { // true only for testing
                             Main.lastRegistredModifiedDate = lastModified;
                             updateScheduleDB(lastModified);
                             sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
@@ -136,7 +134,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     try {
                         Thread.sleep(10000);
                     } catch (InterruptedException e) {
-                        logger.error(STR."Error occured with thread sleeping object -> \{this}, cause -> \{e}");
+                        logger.error("Error occured with thread sleeping object -> " + this + ", cause -> " + e);
                     }
                 } else {
                     break;
@@ -151,7 +149,8 @@ public class TelegramBot extends TelegramLongPollingBot {
             } catch (ClassNotFoundException e) {
                 logger.error("PostgreSQL driver was not found -> {}", String.valueOf(e));
             }
-            String insertQuery = "INSERT INTO users (chatid, isschenabled) values (?, ?) ON CONFLICT (chatid) DO UPDATE SET isschenabled = EXCLUDED.isschenabled";
+            String insertQuery = "INSERT INTO users (chatid, isschenabled) values (?, ?) ON CONFLICT (chatid) " +
+                    "DO UPDATE SET isschenabled = EXCLUDED.isschenabled";
 
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
                 PreparedStatement ps = connection.prepareStatement(insertQuery))
