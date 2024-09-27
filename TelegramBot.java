@@ -23,12 +23,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "BOT_USERNAME";
+        return "javafirstproject_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "BOT_TOKEN";
+        return "7420465438:AAFuhw9QBCl_1Rkuzshelbfw1r8OE5fdAu8";
     }
 
     @Override
@@ -42,6 +42,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             if (text.equalsIgnoreCase("/disableScheduleNotifications")) {
                 logger.info("Disabling schedule notifications");
                 isScheduleEnabled = false;
+                ScheduleCheck.updateUserDB(chatId, false);
                 sendMessage.setText("Schedule notification update system is turned off!");
                 this.execute(sendMessage);
                 return;
@@ -50,6 +51,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             if (text.equalsIgnoreCase("/enableScheduleNotifications")) {
                 logger.info("Enabling schedule notifications");
                 isScheduleEnabled = true;
+                ScheduleCheck.updateUserDB(chatId, true);
                 sendMessage.setText("Schedule notification update system is set!");
                 this.execute(sendMessage);
                 Thread thread = new Thread(new ScheduleCheck(this, chatId));
@@ -57,11 +59,37 @@ public class TelegramBot extends TelegramLongPollingBot {
                 return;
             }
 
-
             sendMessage.setText(MENU);
             this.execute(sendMessage);
         } catch (TelegramApiException e) {
             System.out.println("Something went wrong : " + e);
+        }
+    }
+
+    public void restoreUsers() {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            logger.error("PostgreSQL driver was not found -> {}", String.valueOf(e));
+        }
+
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
+            ResultSet rs = connection.createStatement().executeQuery("SELECT chatid FROM users");
+            ResultSet boolRS = connection.createStatement().executeQuery("SELECT isschenabled FROM users"))
+        {
+            while (rs.next()) {
+                boolRS.next();
+                String chId = rs.getString(1);
+                boolean isEnabled = boolRS.getBoolean(1);
+                if (isEnabled) {
+                    isScheduleEnabled = true;
+                    Thread thread = new Thread(new ScheduleCheck(this, chId));
+                    thread.start();
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("Something went wrong with connection to DB, cause -> {}", String.valueOf(e));
+            e.printStackTrace();
         }
     }
 
@@ -95,10 +123,10 @@ public class TelegramBot extends TelegramLongPollingBot {
                         HttpURLConnection connection = (HttpURLConnection) SCHEDULE_LINK.openConnection();
                         connection.setRequestMethod("HEAD");
                         long lastModified = connection.getLastModified();
-
-                        if (lastModified > Main.lastRegistredModifiedDate) {
+                        // lastModified > Main.lastRegistredModifiedDate
+                        if (true) { // true only for testing!
                             Main.lastRegistredModifiedDate = lastModified;
-                            updateDB(lastModified);
+                            updateScheduleDB(lastModified);
                             sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
                             bot.execute(sendMessage);
                             logger.info("Bot has sent a schedule link to users");
@@ -108,7 +136,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         logger.error(STR."Error occured, cause -> \{e}");
                     }
                     try {
-                        Thread.sleep(60000);
+                        Thread.sleep(10000);
                     } catch (InterruptedException e) {
                         logger.error(STR."Error occured with thread sleeping object -> \{this}, cause -> \{e}");
                     }
@@ -119,13 +147,33 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         }
 
-        private static void updateDB(long lastModified) {
+        private static void updateUserDB(String chatId, boolean isScheduleEnabled) {
             try {
                 Class.forName("org.postgresql.Driver");
             } catch (ClassNotFoundException e) {
                 logger.error("PostgreSQL driver was not found -> {}", String.valueOf(e));
             }
-            String insertQuery = "INSERT INTO schedule (lastmodified) values (?)";
+            String insertQuery = "INSERT INTO users (chatid, isschenabled) values (?, ?) ON CONFLICT (chatid) DO UPDATE SET isschenabled = EXCLUDED.isschenabled";
+
+            try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
+                PreparedStatement ps = connection.prepareStatement(insertQuery))
+            {
+                ps.setString(1, chatId);
+                ps.setBoolean(2, isScheduleEnabled);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                logger.error("Something went wrong with connection to DB, cause -> {}", String.valueOf(e));
+                e.printStackTrace();
+            }
+        }
+
+        private static void updateScheduleDB(long lastModified) {
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException e) {
+                logger.error("PostgreSQL driver was not found -> {}", String.valueOf(e));
+            }
+            String insertQuery = "INSERT INTO schedule (lastmodified) values (?) ON CONFLICT (lastmodified) DO UPDATE SET lastmodified = EXCLUDED.lastmodified";
 
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
                  PreparedStatement ps = connection.prepareStatement(insertQuery)) {
@@ -133,6 +181,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 ps.executeUpdate();
             } catch (SQLException e) {
                 logger.error("Something went wrong with connection to DB, cause -> {}", String.valueOf(e));
+                e.printStackTrace();
             }
         }
     }

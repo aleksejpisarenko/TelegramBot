@@ -18,7 +18,9 @@ public class Main {
     public static void main(String[] args) {
         try {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-            telegramBotsApi.registerBot(new TelegramBot());
+            TelegramBot telegramBot = new TelegramBot();
+            telegramBotsApi.registerBot(telegramBot);
+            telegramBot.restoreUsers();
         } catch (TelegramApiException e) {
             logger.error("Something went wrong in main method, cause -> {}", String.valueOf(e));
         }
@@ -37,7 +39,6 @@ public class Main {
         {
             while (rs.next()) {
                 lastRegistredModifiedDate = rs.getLong("lastmodified");
-                System.out.println(lastRegistredModifiedDate);
             }
         } catch (SQLException e) {
             logger.error("Something went wrong with connection to DB, cause -> {}", String.valueOf(e));
