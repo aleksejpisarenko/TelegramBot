@@ -18,6 +18,9 @@ public class TelegramBot extends TelegramLongPollingBot {
             "\nType /disableschedulenotifications to disable it";
     private static boolean isScheduleEnabled = false;
     private static final Logger logger = LoggerFactory.getLogger(TelegramBot.class);
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String DB_USER = "postgres";
+    private static final String DB_PASSWORD = "3211";
 
     @Override
     public String getBotUsername() {
@@ -71,7 +74,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             logger.error("PostgreSQL driver was not found -> {}", String.valueOf(e));
         }
 
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             ResultSet rs = connection.createStatement().executeQuery("SELECT chatid, isschenabled FROM users"))
         {
             while (rs.next()) {
@@ -152,7 +155,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             String insertQuery = "INSERT INTO users (chatid, isschenabled) values (?, ?) ON CONFLICT (chatid) " +
                     "DO UPDATE SET isschenabled = EXCLUDED.isschenabled";
 
-            try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
+            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                 PreparedStatement ps = connection.prepareStatement(insertQuery))
             {
                 ps.setString(1, chatId);
