@@ -23,12 +23,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "BOT_NAME";
+        return "javafirstproject_bot";
     }
 
     @Override
     public String getBotToken() {
-        return "BOT_TOKEN";
+        return "7420465438:AAFuhw9QBCl_1Rkuzshelbfw1r8OE5fdAu8";
     }
 
     @Override
@@ -37,7 +37,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         String chatId = update.getMessage().getChatId().toString();
         String text = update.getMessage().getText();
         sendMessage.setChatId(chatId);
-
         
         try {
             if (text.equalsIgnoreCase("/disableScheduleNotifications")) {
