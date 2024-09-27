@@ -38,6 +38,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         String text = update.getMessage().getText();
         sendMessage.setChatId(chatId);
 
+        
         try {
             if (text.equalsIgnoreCase("/disableScheduleNotifications")) {
                 logger.info("Disabling schedule notifications");
