@@ -13,9 +13,7 @@ import java.net.URL;
 import java.sql.*;
 
 public class TelegramBot extends TelegramLongPollingBot {
-    private static final String MENU = "This bot can get a local time, my age,\nschool schedule, and some more secrets" +
-            "\nType /getlocaltime to get it" +
-            "\nType /getmyage to get it" +
+    private static final String MENU = "This bot can get a school schedule" +
             "\nType /enableschedulenotifications to enable it" +
             "\nType /disableschedulenotifications to disable it";
     private static boolean isScheduleEnabled = false;
