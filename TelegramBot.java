@@ -170,7 +170,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             } catch (ClassNotFoundException e) {
                 logger.error("PostgreSQL driver was not found -> {}", String.valueOf(e));
             }
-            String insertQuery = "INSERT INTO schedule (lastmodified) values (?) ON CONFLICT (lastmodified) DO UPDATE SET lastmodified = EXCLUDED.lastmodified";
+            String insertQuery = "INSERT INTO schedule (lastmodified) values (?)";
 
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
                  PreparedStatement ps = connection.prepareStatement(insertQuery)) {
