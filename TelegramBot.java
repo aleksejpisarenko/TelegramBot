@@ -111,6 +111,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         @Override
         public void run() {
+            long lastRegistredModifiedDate = getLastRegistredModifiedDate();
+
             SendMessage sendMessage = new SendMessage();
             sendMessage.setChatId(chatId);
             while (true) {
@@ -120,8 +122,8 @@ public class TelegramBot extends TelegramLongPollingBot {
                         connection.setRequestMethod("HEAD");
                         long lastModified = connection.getLastModified();
 
-                        if (lastModified > Main.lastRegistredModifiedDate) { // true only for testing
-                            Main.lastRegistredModifiedDate = lastModified;
+                        if (lastModified > lastRegistredModifiedDate) { // true only for testing
+                            lastRegistredModifiedDate = lastModified;
                             updateScheduleDB(lastModified);
                             sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
                             bot.execute(sendMessage);
@@ -141,6 +143,29 @@ public class TelegramBot extends TelegramLongPollingBot {
                 }
             }
 
+        }
+
+        private static long getLastRegistredModifiedDate() {
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException e) {
+                logger.error("PostgreSQL driver was not found -> {}" , String.valueOf(e));
+            }
+
+            long toReturn = 0;
+
+            try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
+                 Statement statement = connection.createStatement();
+                 ResultSet rs = statement.executeQuery("SELECT lastmodified from schedule"))
+            {
+                while (rs.next()) {
+                    toReturn = rs.getLong("lastmodified");
+                }
+            } catch (SQLException e) {
+                logger.error("Something went wrong with connection to DB, cause -> {}", String.valueOf(e));
+            }
+
+            return toReturn;
         }
 
         private static void updateUserDB(String chatId, boolean isScheduleEnabled) {
