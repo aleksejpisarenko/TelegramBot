@@ -196,11 +196,14 @@ public class TelegramBot extends TelegramLongPollingBot {
                 logger.error("PostgreSQL driver was not found -> {}", String.valueOf(e));
             }
             String insertQuery = "INSERT INTO schedule (lastmodified) values (?) ON CONFLICT (lastmodified) DO UPDATE SET lastmodified = EXCLUDED.lastmodified";
+            String deleteQuery = "DELETE FROM schedule";
 
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
-                 PreparedStatement ps = connection.prepareStatement(insertQuery)) {
-                ps.setLong(1, lastModified);
-                ps.executeUpdate();
+                 PreparedStatement insertStatement = connection.prepareStatement(insertQuery);
+                 PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery)) {
+                deleteStatement.executeUpdate();
+                insertStatement.setLong(1, lastModified);
+                insertStatement.executeUpdate();
             } catch (SQLException e) {
                 logger.error("Something went wrong with connection to DB, cause -> {}", String.valueOf(e));
                 e.printStackTrace();
