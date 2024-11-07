@@ -151,7 +151,6 @@ public class TelegramBot extends TelegramLongPollingBot {
             } catch (ClassNotFoundException e) {
                 logger.error("PostgreSQL driver was not found -> {}" , String.valueOf(e));
             }
-
             long toReturn = 0;
 
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
