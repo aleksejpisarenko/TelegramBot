@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -11,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.*;
+import java.util.HashMap;
 
 public class TelegramBot extends TelegramLongPollingBot {
     private static final String MENU = "This bot can get a school schedule" +
@@ -35,7 +37,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         String chatId = update.getMessage().getChatId().toString();
         String text = update.getMessage().getText();
         sendMessage.setChatId(chatId);
-        
+        System.out.println(update.getChatMember());
+        String toParse = update.getMessage().toString();
+        System.out.println(parseUsersInfo(toParse));
         try {
             if (text.equalsIgnoreCase("/disableScheduleNotifications")) {
                 logger.info("Disabling schedule notifications");
@@ -43,6 +47,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 ScheduleCheck.updateUserDB(chatId, false);
                 sendMessage.setText("Schedule notification update system is turned off!");
                 this.execute(sendMessage);
+                ThreadManager.removeThread(chatId);
                 return;
             }
 
@@ -52,8 +57,18 @@ public class TelegramBot extends TelegramLongPollingBot {
                 ScheduleCheck.updateUserDB(chatId, true);
                 sendMessage.setText("Schedule notification update system is set!");
                 this.execute(sendMessage);
-                Thread thread = new Thread(new ScheduleCheck(this, chatId));
-                thread.start();
+
+                Thread thread = ThreadManager.createThread(chatId, new ScheduleCheck(this, chatId));
+                /*
+                 Try to create thread with specific name, which is user's chatID
+                 So the user couldn't create more than one on his ID
+                */
+
+                if (thread!=null) {
+                    thread.start();
+                } else {
+                    System.out.println("Thread is already been created");
+                }
                 return;
             }
 
@@ -64,6 +79,21 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
+    private static String parseUsersInfo(String toParse) {
+        HashMap<String, String> userInfoMap = new HashMap<>();
+        toParse = toParse.substring(8, toParse.length() - 1);
+        String[] usersInfo = toParse.split(",");
+
+        for (String s : usersInfo) {
+            String[] strings = s.split("=");
+            userInfoMap.put(strings[0].trim(), strings[1].trim());
+        }
+
+        return "First Name is: " + userInfoMap.get("firstName")
+                + " Last Name is: " + userInfoMap.get("lastName")
+                + "(might be null), userName is: " + userInfoMap.get("userName");
+    }
+
     public void restoreUsers() {
         try {
             Class.forName("org.postgresql.Driver");
@@ -72,15 +102,20 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
-            ResultSet rs = connection.createStatement().executeQuery("SELECT chatid, isschenabled FROM users"))
-        {
+             ResultSet rs = connection.createStatement().executeQuery("SELECT chatid, isschenabled FROM users")) {
             while (rs.next()) {
-                String chId = rs.getString("chatid");
+                String chatId= rs.getString("chatid");
                 boolean isEnabled = rs.getBoolean("isschenabled");
                 if (isEnabled) {
                     isScheduleEnabled = true;
-                    Thread thread = new Thread(new ScheduleCheck(this, chId));
-                    thread.start();
+
+                    Thread thread = ThreadManager.createThread(chatId, new ScheduleCheck(this, chatId));
+
+                    if (thread!=null) {
+                        thread.start();
+                    } else {
+                        System.out.println("Thread is already been created");
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -136,7 +171,9 @@ public class TelegramBot extends TelegramLongPollingBot {
                     try {
                         Thread.sleep(10000);
                     } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
                         logger.error("Error occured with thread sleeping object -> " + this + ", cause -> " + e);
+                        break;
                     }
                 } else {
                     break;
@@ -149,14 +186,13 @@ public class TelegramBot extends TelegramLongPollingBot {
             try {
                 Class.forName("org.postgresql.Driver");
             } catch (ClassNotFoundException e) {
-                logger.error("PostgreSQL driver was not found -> {}" , String.valueOf(e));
+                logger.error("PostgreSQL driver was not found -> {}", String.valueOf(e));
             }
             long toReturn = 0;
 
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
                  Statement statement = connection.createStatement();
-                 ResultSet rs = statement.executeQuery("SELECT lastmodified from schedule"))
-            {
+                 ResultSet rs = statement.executeQuery("SELECT lastmodified from schedule")) {
                 while (rs.next()) {
                     toReturn = rs.getLong("lastmodified");
                 }
@@ -177,8 +213,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     "DO UPDATE SET isschenabled = EXCLUDED.isschenabled";
 
             try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "3211");
-                PreparedStatement ps = connection.prepareStatement(insertQuery))
-            {
+                 PreparedStatement ps = connection.prepareStatement(insertQuery)) {
                 ps.setString(1, chatId);
                 ps.setBoolean(2, isScheduleEnabled);
                 ps.executeUpdate();
