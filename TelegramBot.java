@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -37,7 +36,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         String chatId = update.getMessage().getChatId().toString();
         String text = update.getMessage().getText();
         sendMessage.setChatId(chatId);
-        System.out.println(update.getChatMember());
         String toParse = update.getMessage().toString();
         System.out.println(parseUsersInfo(toParse));
         try {
@@ -169,7 +167,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         logger.error("Error occured, cause -> " + e);
                     }
                     try {
-                        Thread.sleep(10000);
+                        Thread.sleep(18000000);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                         logger.error("Error occured with thread sleeping object -> " + this + ", cause -> " + e);
