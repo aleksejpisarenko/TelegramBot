@@ -65,7 +65,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                 if (thread!=null) {
                     thread.start();
                 } else {
-                    System.out.println("Thread is already been created");
+                    System.out.println("Thread had already  been created");
                 }
                 return;
             }
@@ -112,7 +112,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     if (thread!=null) {
                         thread.start();
                     } else {
-                        System.out.println("Thread is already been created");
+                        logger.error("Thread had already  been created");
                     }
                 }
             }

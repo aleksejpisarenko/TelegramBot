@@ -12,7 +12,7 @@ public class ThreadManager {
     public static Thread createThread(String name, Runnable task) {
         synchronized (activeUserThreads) {
             if (activeUserThreads.containsKey(name)) {
-                logger.info("Thread map does not contain: '" + name + "'");
+                logger.info("Thread map does already contain: '" + name + "'");
                 return null;
             }
 
