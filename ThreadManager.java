@@ -12,13 +12,14 @@ public class ThreadManager {
     public static Thread createThread(String name, Runnable task) {
         synchronized (activeUserThreads) {
             if (activeUserThreads.containsKey(name)) {
-                logger.info("Thread map does already contain: '" + name + "'");
+                logger.info("Thread map does already contain: '{}'", name);
                 return null;
             }
 
             Thread thread = new Thread(task, name);
             activeUserThreads.put(name, thread);
-            logger.info("Thread was successfully added to thread map: '" + name + "'");
+            logger.info("Thread was successfully added to thread map: '{}'", name);
+
             return thread;
         }
     }
@@ -26,13 +27,13 @@ public class ThreadManager {
     public static boolean removeThread(String name) {
         synchronized (activeUserThreads) {
             if (!activeUserThreads.containsKey(name)) {
-                logger.info("Thread map does not contain: '" + name + "'");
+                logger.info("Thread map does not contain: '{}'", name);
                 return false;
             }
             activeUserThreads.get(name).interrupt();
-            logger.info("Thread '" + name + "' was successfully interrupted");
+            logger.info("Thread '{}' was successfully interrupted", name);
             activeUserThreads.remove(name);
-            logger.info("Thread '" + name + "' was successfully removed");
+            logger.info("Thread '{}' was successfully removed", name);
             return true;
         }
     }
