@@ -117,7 +117,7 @@ this documentation will guide you through every step of the process.</p>
     <li style="font-size: 16px">To run this JAR file locally: <pre><code>java -jar target/TelegramBot-1.0.0</code></pre></li>
 </ol>
 
-<h2>Step-by-Step setup</h2>
+<h1>Step-by-Step setup</h1>
 <ol>
     <li><h2 style="font-size: 18px">Prerequisites</h2></li>
     <ul>
