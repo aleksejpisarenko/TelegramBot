@@ -100,14 +100,14 @@ this documentation will guide you through every step of the process.</p>
 
 </ol>
 
-<h2>Technical Requirements</h2>
+<h1>Technical Requirements</h1>
 <ul>
     <li style="font-size: 16px"><b>Operating System:</b> Any OS that could run JDK 23, host a PostgreSQL server, and work with a GIT.</li>
     <li style="font-size: 16px"><b>Memory:</b> At least 1GB of RAM(Depends on user count, 'cause 1 user = 1 thread)</li>
     <li style="font-size: 16px"><b>Storage:</b> Around 5 MB for Application, and around 1GB for logger.</li>
     
 </ul>
-<h2 id="gitSetup">Installation Steps</h2>
+<h1 id="gitSetup">Installation Steps</h1>
 <ol> 
     <h3>IMPORTANT: Ensure you have specified JAVA_HOME,MAVEN_HOME and already have experience with compiling, starting JAR applications through CLI.</h3>
     <li style="font-size: 16px">Clone the repository from GitHub: <br> <pre><code>git clone https://github.com/aleksejpisarenko/TelegramBot.git</code></pre></li>
