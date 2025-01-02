@@ -20,22 +20,27 @@ public class ConfigManager {
     }
 
     public static String getDatabaseUsername() {
+        logger.debug("Database username was received");
         return String.valueOf(configProperties.get("db_user"));
     }
 
     public static String getDatabasePassword() {
+        logger.debug("Database password was received");
         return String.valueOf(configProperties.get("db_pass"));
     }
 
     public static String getBotToken() {
+        logger.debug("Bot token was received");
         return String.valueOf(configProperties.get("bot_token"));
     }
 
     public static String getBotName() {
+        logger.debug("Bot name was received");
         return String.valueOf(configProperties.get("bot_name"));
     }
 
     public static String getDatabaseURL() {
+        logger.debug("Database url was received");
         return String.valueOf(configProperties.get("db_url"));
     }
 }
