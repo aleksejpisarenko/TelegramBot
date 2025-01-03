@@ -129,7 +129,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
                         bot.execute(sendMessage);
                         logger.info("Bot has sent a schedule link to users");
-
+                        Thread.sleep(3600000);
                     }
                     connection.disconnect();
                 } catch (Exception e) {
