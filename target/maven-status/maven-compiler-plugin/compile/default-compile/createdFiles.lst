@@ -1,0 +1,6 @@
+org/example/TelegramBot/ThreadManager.class
+org/example/TelegramBot/DatabaseService.class
+org/example/TelegramBot/TelegramBot$ScheduleCheck.class
+org/example/TelegramBot/TelegramBot.class
+org/example/TelegramBot/ConfigManager.class
+org/example/TelegramBot/Main.class
