@@ -138,7 +138,7 @@ protected static class ScheduleCheck implements Runnable {
                             e.printStackTrace();
                         }
                     } else {
-                        System.out.println(String.format("Schedule update rejected: Attempted at %s, last allowed update was at %s", new Date(), lastRegisteredModifiedDate));
+                        //System.out.println(String.format("Schedule update rejected: Attempted at %s, last allowed update was at %s", new Date(), lastRegisteredModifiedDate));
                     }
 
 

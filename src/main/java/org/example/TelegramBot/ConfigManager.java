@@ -12,7 +12,7 @@ public class ConfigManager {
     private static final Logger logger = LoggerFactory.getLogger(ConfigManager.class);
 
     static {
-        try (FileInputStream fis = new FileInputStream("C:\\Users\\nemok\\IdeaProjects\\TelegramBot\\src\\main\\java\\org\\example\\TelegramBot\\Config.properties")) {
+        try (FileInputStream fis = new FileInputStream("/home/TelegramBot/src/main/java/org/example/TelegramBot/Config.properties")) {
             configProperties.load(fis);
         } catch (IOException e) {
             logger.error("Couldn't load configurational file, ->{}", String.valueOf(e));
