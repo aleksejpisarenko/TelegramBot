@@ -17,7 +17,7 @@ public class Main {
             telegramBotsApi.registerBot(telegramBot);
             DatabaseService.restoreUsers(telegramBot);
         } catch (TelegramApiException e) {
-            logger.error("Something went wrong in main method, cause -> {}", String.valueOf(e));
+            logger.error("Restarting, cause -> {}", String.valueOf(e));
         }
     }
 }
