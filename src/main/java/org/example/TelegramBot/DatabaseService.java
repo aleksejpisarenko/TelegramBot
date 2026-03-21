@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
+import java.util.HashMap;
 
 public class DatabaseService {
     private static final Logger logger = LoggerFactory.getLogger(DatabaseService.class);
@@ -73,7 +74,9 @@ public class DatabaseService {
         }
     }
 
-    public static void restoreUsers(TelegramBot bot) {
+    public static HashMap<String, Boolean> getUsers(TelegramBot bot) {
+        HashMap<String, Boolean> resultMap = new HashMap<>();
+
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -85,19 +88,13 @@ public class DatabaseService {
             while (rs.next()) {
                 String chatId = rs.getString("chatid");
                 boolean isEnabled = rs.getBoolean("isschenabled");
-                if (isEnabled) {
-                    Thread thread = ThreadManager.createThread(chatId, new TelegramBot.ScheduleCheck(bot, chatId));
-
-                    if (thread != null) {
-                        thread.start();
-                    } else {
-                        System.out.println("Thread has already been created");
-                    }
-                }
+                resultMap.put(chatId, Boolean.valueOf(isEnabled));
             }
         } catch (SQLException e) {
             logger.error("Something went wrong with connection to DB, cause -> {}", String.valueOf(e));
             e.printStackTrace();
         }
+
+        return resultMap;
     }
 }

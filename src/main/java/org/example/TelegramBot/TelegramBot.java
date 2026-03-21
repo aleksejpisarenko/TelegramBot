@@ -10,8 +10,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
 public class TelegramBot extends TelegramLongPollingBot {
@@ -22,6 +20,12 @@ public class TelegramBot extends TelegramLongPollingBot {
             
             Type /disableschedulenotifications to disable it""";
     private static final Logger logger = LoggerFactory.getLogger(TelegramBot.class);
+    private static HashMap<String, Boolean> userTable = new HashMap<>();
+
+    {
+        userTable = DatabaseService.getUsers(this);
+        System.out.println(userTable);
+    }
 
     @Override
     public String getBotUsername() {
@@ -47,7 +51,14 @@ public class TelegramBot extends TelegramLongPollingBot {
                 DatabaseService.updateUserDB(chatId, false);
                 sendMessage.setText("Schedule notification update system is turned off!");
                 this.execute(sendMessage);
-                ThreadManager.removeThread(chatId);
+
+                if (userTable.get(chatId).equals(Boolean.TRUE)) {
+                    userTable.put(chatId, Boolean.FALSE);
+                } else {
+                    System.out.println("User has already had notifications turned off");
+                }
+
+                System.out.println(userTable);
                 return;
             }
 
@@ -57,17 +68,13 @@ public class TelegramBot extends TelegramLongPollingBot {
                 sendMessage.setText("Schedule notification update system is set!");
                 this.execute(sendMessage);
 
-                Thread thread = ThreadManager.createThread(chatId, new ScheduleCheck(this, chatId));
-                /*
-                 Try to create thread with specific name, which is user's chatID
-                 So the user couldn't create more than one on his ID
-                */
-
-                if (thread != null) {
-                    thread.start();
+                if (userTable.get(chatId).equals(Boolean.FALSE) || userTable.get(chatId) == null) {
+                    userTable.put(chatId, Boolean.TRUE);
                 } else {
-                    System.out.println("Thread has already been created");
+                    System.out.println("User has already had notifications turned on");
                 }
+
+                System.out.println(userTable);
                 return;
             }
 
@@ -84,18 +91,19 @@ public class TelegramBot extends TelegramLongPollingBot {
         String[] usersInfo = toParse.split(",");
 
         for (String s : usersInfo) {
-        String[] strings = s.split("=");
-        userInfoMap.put(strings[0].trim(), strings[1].trim());
-    }
+            String[] strings = s.split("=");
+            userInfoMap.put(strings[0].trim(), strings[1].trim());
+        }
 
         return "First Name is: " + userInfoMap.get("firstName")
                 + " Last Name is: " + userInfoMap.get("lastName")
                 + "(might be null), userName is: " + userInfoMap.get("userName");
-}
+    }
 
-protected static class ScheduleCheck implements Runnable {
+    protected static class ScheduleCheck implements Runnable {
         private static final URL SCHEDULE_LINK;
         private static final int HOURS_3 = 10_800_800; // 3 hours
+
         static {
             try {
                 SCHEDULE_LINK = new URL("https://j5vsk.lv/izmainas/ritdienai/izmainas.pdf");
@@ -106,42 +114,40 @@ protected static class ScheduleCheck implements Runnable {
         }
 
         private final TelegramBot bot;
-        private final String chatId;
 
-        protected ScheduleCheck(TelegramBot bot, String chatId) {
+        protected ScheduleCheck(TelegramBot bot) {
             this.bot = bot;
-            this.chatId = chatId;
         }
 
         @Override
         public void run() {
+            SendMessage sendMessage = new SendMessage();
             long lastRegisteredModifiedDate = DatabaseService.getLastRegisteredModifiedDate();
 
-            SendMessage sendMessage = new SendMessage();
-            sendMessage.setChatId(chatId);
             while (true) {
                 try {
                     HttpURLConnection connection = (HttpURLConnection) SCHEDULE_LINK.openConnection();
                     connection.setRequestMethod("HEAD");
                     long lastModified = connection.getLastModified();
-                    Date currentDate = Calendar.getInstance().getTime();
 
                     if (lastModified > lastRegisteredModifiedDate + HOURS_3) { // Schedule "spam" protection (+ 3 hours)
                         lastRegisteredModifiedDate = lastModified;
                         DatabaseService.updateScheduleDB(lastModified);
                         try {
-                            sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
-                            bot.execute(sendMessage);
-                            Thread.sleep(100);
-                            logger.info("Bot has sent a schedule link to users");
+                            for (String chatId : userTable.keySet()) {
+                                if (userTable.get(chatId).equals(Boolean.TRUE)) {
+                                    sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
+                                    sendMessage.setChatId(chatId);
+                                    bot.execute(sendMessage);
+                                    logger.info("Bot has sent a schedule link to user " + "'" + chatId + "'");
+                                }
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     } else {
                         //System.out.println(String.format("Schedule update rejected: Attempted at %s, last allowed update was at %s", new Date(), lastRegisteredModifiedDate));
                     }
-
-
                     connection.disconnect();
                 } catch (Exception e) {
                     logger.error("Error occurred, cause -> {}", String.valueOf(e));

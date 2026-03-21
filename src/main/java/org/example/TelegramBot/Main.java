@@ -15,7 +15,8 @@ public class Main {
             TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
             TelegramBot telegramBot = new TelegramBot();
             telegramBotsApi.registerBot(telegramBot);
-            DatabaseService.restoreUsers(telegramBot);
+            TelegramBot.ScheduleCheck mainThread = new TelegramBot.ScheduleCheck(telegramBot);
+            mainThread.run();
         } catch (TelegramApiException e) {
             logger.error("Restarting, cause -> {}", String.valueOf(e));
         }
