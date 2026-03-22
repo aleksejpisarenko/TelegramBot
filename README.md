@@ -28,6 +28,7 @@ this documentation will guide you through every step of the process.</p>
 <br> "db_pass" as for your database password, 
 <br> "db_user" as for your database name, 
 <br> "db_url" as for your database URL.</li>
+
 <li style="font-size: 16px"><b>Loggers</b>. The logging framework that is used is SLF4J, which you can configure based on your needs. Here's my configuration of it.</li>
 
         <?xml version="1.0" encoding="UTF-8"?>
