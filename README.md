@@ -21,8 +21,8 @@ this documentation will guide you through every step of the process.</p>
 <h1 id="gettingStarted">Getting Started</h1>
 <p style="font-size: 14px"> To get started with "Telegram Schedule Bot", you'll need the following tools and prerequisites.</p>
 <ol>
-<li style="font-size: 16px"><b>Java Development Kit</b>. Ensure you have JDK version of 23 or higher installed</li>
-<li style="font-size: 16px"><b>Configurational File</b>. Prepare a configurational file containing:
+<li style="font-size: 16px"><b>Java Development Kit</b>. Ensure you have JDK version of 21 installed</li>
+<li style="font-size: 16px"><b>Configurational File</b>. Prepare a configurational file named 'Config.properties' containing:
 <br> "bot_token" as for bot token, that you get in a BotFather bot(@BotFather in telegram), 
 <br> "bot_name" as for bot name, that you get in a BotFather bot(@BotFather in telegram), 
 <br> "db_pass" as for your database password, 
@@ -102,9 +102,9 @@ this documentation will guide you through every step of the process.</p>
 
 <h1>Technical Requirements</h1>
 <ul>
-    <li style="font-size: 16px"><b>Operating System:</b> Any OS that could run JDK 23, host a PostgreSQL server, and work with a GIT.</li>
-    <li style="font-size: 16px"><b>Memory:</b> At least 1GB of RAM(Depends on user count, 'cause 1 user = 1 thread)</li>
-    <li style="font-size: 16px"><b>Storage:</b> Around 5 MB for Application, and around 1GB for logger.</li>
+    <li style="font-size: 16px"><b>Operating System:</b> Any OS that could run JDK 21, host a PostgreSQL server, and work with a GIT.</li>
+    <li style="font-size: 16px"><b>Memory:</b> At least 1GB of RAM</li>
+    <li style="font-size: 16px"><b>Storage:</b> Around 5 MB for Application, and mind some space for logging system.</li>
     
 </ul>
 <h1 id="gitSetup">Installation Steps</h1>
@@ -113,8 +113,8 @@ this documentation will guide you through every step of the process.</p>
     <li style="font-size: 16px">Clone the repository from GitHub: <br> <pre><code>git clone https://github.com/aleksejpisarenko/TelegramBot.git</code></pre></li>
     <li style="font-size: 16px">Navigate to the project directory(In CMD or similar CLI): <br> <pre><code>cd [project folder name]</code></pre></li>
     <li style="font-size: 16px">Run the Build Script(package compiles your code and creates a JAR file in the target/ directory: <br> <pre><code>mvn clean package</code></pre></li>
-    <li style="font-size: 16px">Now you have your JAR file: target/TelegramBot-1.0.0</li>
-    <li style="font-size: 16px">To run this JAR file locally: <pre><code>java -jar target/TelegramBot-1.0.0</code></pre></li>
+    <li style="font-size: 16px">Now you have your JAR file: target/TelegramBot-1.0.0.jar</li>
+    <li style="font-size: 16px">To run this JAR file locally: <pre><code>java -jar target/TelegramBot-1.0.0.jar</code></pre></li>
 </ol>
 
 <h1>Step-by-Step setup</h1>
@@ -123,7 +123,7 @@ this documentation will guide you through every step of the process.</p>
     <ul>
         <li style="font-size: 16px"><b>JDK</b></li>
         <ul>
-            <li style="font-size: 16px"> Ensure JDK 23+ is installed</li>
+            <li style="font-size: 16px"> Ensure JDK 21 is installed</li>
             <li style="font-size: 16px">Set the JAVA_HOME and MAVEN_HOME environment variable</li>
         </ul>
         <li style="font-size: 16px"><b>Maven</b></li>
@@ -137,11 +137,10 @@ this documentation will guide you through every step of the process.</p>
             and "schedule" with following column names: <br>
             for users: chatid(varchar 100 not null), isschenabled(bool not null) <br>
             for schedule: lastmodified(BIGINT not null).</li>
-            <li style="font-size: 16px">That's it for database configuration.</li>
         </ul>
         <li style="font-size: 16px"><b>Configurational file</b></li>
         <ul>
-            <li style="font-size: 16px">Create a file called "Config.properties" in the project folder</li>
+            <li style="font-size: 16px">Create a file called 'Config.properties' in the project folder</li>
             <li style="font-size: 16px"><a href="#gettingStarted">Here's description how to setup the config. file</a> </li>
         </ul>
         <li style="font-size: 16px"><b>Other tools</b></li>
