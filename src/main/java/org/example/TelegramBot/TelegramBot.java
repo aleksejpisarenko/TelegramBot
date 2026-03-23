@@ -133,13 +133,18 @@ public class TelegramBot extends TelegramLongPollingBot {
                     if (lastModified > lastRegisteredModifiedDate + HOURS_3) { // Schedule "spam" protection (+ 3 hours)
                         lastRegisteredModifiedDate = lastModified;
                         DatabaseService.updateScheduleDB(lastModified);
-                        try {
+			try {
                             for (String chatId : userTable.keySet()) {
+                                System.out.println(chatId);
                                 if (userTable.get(chatId).equals(Boolean.TRUE)) {
-                                    sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
-                                    sendMessage.setChatId(chatId);
-                                    bot.execute(sendMessage);
-                                    logger.info("Bot has sent a schedule link to user " + "'" + chatId + "'");
+                                    try {
+                                        sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
+                                        sendMessage.setChatId(chatId);
+                                        bot.execute(sendMessage);
+                                        logger.info("Bot has sent a schedule link to user " + "'" + chatId + "'");
+                                    } catch (Exception e) {
+                                        logger.error("Something went wrong sending message " + e);
+                                    }
                                 }
                             }
                         } catch (Exception e) {
