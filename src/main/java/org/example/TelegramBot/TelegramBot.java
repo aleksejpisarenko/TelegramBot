@@ -23,8 +23,13 @@ public class TelegramBot extends TelegramLongPollingBot {
     private static HashMap<String, Boolean> userTable = new HashMap<>();
 
     {
-        userTable = DatabaseService.getUsers(this);
-        System.out.println(userTable);
+	try {
+		userTable = DatabaseService.getUsers(this);
+		System.out.println(userTable);
+	}
+	catch (Exception e) {
+		
+	}
     }
 
     @Override
@@ -106,7 +111,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         static {
             try {
-                SCHEDULE_LINK = new URL("https://j5vsk.lv/izmainas/ritdienai/izmainas.pdf");
+                SCHEDULE_LINK = new URL("https://aspazijasvsk.lv/wp-content/uploads/2026/09/Stundu-saraksts-7_09.pdf");
             } catch (MalformedURLException e) {
                 logger.error("FAILED TO INITIALIZE SCHEDULE_LINK, cause -> {}", String.valueOf(e));
                 throw new RuntimeException(e);
@@ -130,6 +135,10 @@ public class TelegramBot extends TelegramLongPollingBot {
                     connection.setRequestMethod("HEAD");
                     long lastModified = connection.getLastModified();
 
+		    System.out.println(lastModified > (lastRegisteredModifiedDate + HOURS_3));
+		    System.out.println(lastRegisteredModifiedDate);
+		    System.out.println(lastModified);
+
                     if (lastModified > lastRegisteredModifiedDate + HOURS_3) { // Schedule "spam" protection (+ 3 hours)
                         lastRegisteredModifiedDate = lastModified;
                         DatabaseService.updateScheduleDB(lastModified);
@@ -151,14 +160,14 @@ public class TelegramBot extends TelegramLongPollingBot {
                             e.printStackTrace();
                         }
                     } else {
-                        //System.out.println(String.format("Schedule update rejected: Attempted at %s, last allowed update was at %s", new Date(), lastRegisteredModifiedDate));
+                        System.out.println("rejected update");
                     }
                     connection.disconnect();
                 } catch (Exception e) {
                     logger.error("Error occurred, cause -> {}", String.valueOf(e));
                 }
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(300000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("Error occurred with thread sleeping object -> {}, cause -> {}", this, e);

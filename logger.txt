@@ -1,0 +1,374 @@
+10:55:04.525 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+10:55:04.528 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+10:55:04.528 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+10:55:04.548 [main] ERROR org.example.TelegramBot.DatabaseService - Something went wrong with connection to DB, cause -> java.sql.SQLException: No suitable driver found for localhost:5432/tgbot
+10:55:04.550 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:55:04.553 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+10:55:04.556 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:55:05.134 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:55:05.139 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+10:55:05.143 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+10:55:05.145 [main] ERROR org.example.TelegramBot.DatabaseService - Something went wrong with connection to DB, cause -> java.sql.SQLException: No suitable driver found for localhost:5432/tgbot
+10:55:19.772 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+10:55:19.775 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+10:55:19.775 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+10:55:19.786 [main] ERROR org.example.TelegramBot.DatabaseService - Something went wrong with connection to DB, cause -> java.sql.SQLException: No suitable driver found for localhost:5432/tgbot
+10:55:19.787 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:55:19.789 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+10:55:19.791 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:55:20.301 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:55:20.304 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+10:55:20.307 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+10:55:20.309 [main] ERROR org.example.TelegramBot.DatabaseService - Something went wrong with connection to DB, cause -> java.sql.SQLException: No suitable driver found for localhost:5432/tgbot
+10:55:22.177 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+10:55:22.177 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:55:25.203 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+10:55:25.203 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:56:26.852 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+10:56:26.855 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+10:56:26.855 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+10:56:27.319 [main] ERROR org.example.TelegramBot.DatabaseService - Something went wrong with connection to DB, cause -> org.postgresql.util.PSQLException: ERROR: relation "users" does not exist
+  Position: 34
+10:56:27.320 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:56:27.333 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+10:56:27.335 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:56:27.661 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+10:56:27.664 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+10:56:27.668 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+10:56:27.738 [main] ERROR org.example.TelegramBot.DatabaseService - Something went wrong with connection to DB, cause -> org.postgresql.util.PSQLException: ERROR: relation "schedule" does not exist
+  Position: 26
+11:00:48.397 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+11:00:48.400 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+11:00:48.400 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+11:00:48.796 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:00:48.799 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+11:00:48.800 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:00:49.112 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:00:49.114 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+11:00:49.118 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+11:01:50.595 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+11:01:50.595 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:01:52.792 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+11:01:52.793 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+11:01:52.834 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:02:27.872 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+11:02:27.872 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+11:02:27.918 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:02:30.353 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+11:02:30.353 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Disabling schedule notifications
+11:02:30.385 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:02:33.048 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+11:02:33.048 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+11:02:33.080 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:06:39.628 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+11:06:39.630 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+11:06:39.630 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+11:06:40.025 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:06:40.030 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+11:06:40.035 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:06:40.384 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:06:40.387 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+11:06:40.390 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+11:06:46.958 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+11:06:46.959 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Disabling schedule notifications
+11:06:47.009 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:06:50.120 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+11:06:50.121 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+11:06:50.159 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:23:36.858 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+11:23:36.861 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+11:23:36.861 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+11:23:37.281 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:23:37.284 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+11:23:37.288 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:23:37.612 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:23:37.614 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+11:23:37.618 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+11:23:37.869 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+11:23:37.869 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+11:23:38.053 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+11:23:38.053 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+12:59:46.441 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+12:59:46.444 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+12:59:46.444 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+12:59:46.857 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+12:59:46.860 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+12:59:46.863 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+12:59:47.160 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+12:59:47.162 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+12:59:47.165 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:00:44.665 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:00:44.668 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:00:44.669 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:00:45.107 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:00:45.121 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:00:45.128 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:00:45.463 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:00:45.467 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:00:45.471 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:00:45.877 [main] ERROR org.example.TelegramBot.DatabaseService - Something went wrong with connection to DB, cause -> org.postgresql.util.PSQLException: ERROR: there is no unique or exclusion constraint matching the ON CONFLICT specification
+13:00:45.878 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:00:46.091 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:01:18.438 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:01:18.441 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:01:18.441 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:01:18.827 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:01:18.830 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:01:18.835 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:01:19.165 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:01:19.170 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:01:19.175 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:01:19.557 [main] ERROR org.example.TelegramBot.DatabaseService - Something went wrong with connection to DB, cause -> org.postgresql.util.PSQLException: ERROR: there is no unique or exclusion constraint matching the ON CONFLICT specification
+13:01:19.561 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:01:19.805 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:01:25.929 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:01:25.932 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:01:25.932 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:01:26.388 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:01:26.390 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:01:26.395 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:01:26.692 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:01:26.695 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:01:26.699 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:01:27.097 [main] ERROR org.example.TelegramBot.DatabaseService - Something went wrong with connection to DB, cause -> org.postgresql.util.PSQLException: ERROR: there is no unique or exclusion constraint matching the ON CONFLICT specification
+13:01:27.098 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:01:27.295 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:05:53.893 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:05:53.896 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:05:53.896 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:05:54.299 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:05:54.302 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:05:54.303 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:05:54.628 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:05:54.631 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:05:54.635 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:05:54.960 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:05:55.204 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:07:01.909 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+13:07:01.910 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:07:10.502 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+13:07:10.502 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+13:07:10.536 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:07:46.752 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+13:07:46.752 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+13:07:46.792 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:09:02.788 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:09:02.791 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:09:02.791 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:09:03.207 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:09:03.210 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:09:03.212 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:09:03.522 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:09:03.524 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:09:03.527 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:09:03.838 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:09:04.038 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:10:23.129 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:10:23.132 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:10:23.132 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:10:23.537 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:10:23.543 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:10:23.545 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:10:23.844 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:10:23.846 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:10:23.849 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:12:08.015 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+13:12:08.016 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+13:12:08.063 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:16:50.782 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:16:50.785 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:16:50.785 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:16:51.290 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:16:51.293 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:16:51.297 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:16:51.630 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:16:51.633 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:16:51.636 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:16:51.854 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:16:52.107 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:18:21.707 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:18:21.710 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:18:21.710 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:18:22.103 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:18:22.106 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:18:22.108 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:18:22.413 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:18:22.416 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:18:22.419 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:18:22.665 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:18:22.938 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:19:59.770 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:19:59.773 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:19:59.773 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:20:00.170 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:20:00.181 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:20:00.183 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:20:00.501 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:20:00.503 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:20:00.507 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:20:00.711 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:20:00.902 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:22:01.822 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:22:01.825 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:22:01.825 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:22:02.330 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:22:02.333 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:22:02.339 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:22:02.674 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:22:02.676 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:22:02.680 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:24:27.127 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:24:27.129 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:24:27.129 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:24:27.533 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:24:27.544 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:24:27.546 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:24:27.872 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:24:27.875 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:24:27.878 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:25:38.187 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:25:38.190 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:25:38.190 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:25:38.583 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:25:38.592 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:25:38.595 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:25:38.923 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:25:38.926 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:25:38.929 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:26:12.748 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:26:12.751 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:26:12.751 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:26:13.121 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:26:13.130 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:26:13.132 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:26:13.450 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:26:13.453 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:26:13.456 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:26:13.675 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:26:13.906 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:29:01.096 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+13:29:01.099 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+13:29:01.099 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+13:29:01.525 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:29:01.536 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:29:01.538 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:29:01.843 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:29:01.846 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:29:01.849 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+13:29:02.202 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:29:02.461 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+13:29:23.123 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+13:29:23.124 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:29:24.779 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+13:29:24.779 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+13:29:24.814 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:37:08.093 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+13:37:08.093 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Disabling schedule notifications
+13:37:08.135 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+13:37:12.719 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+13:37:12.719 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+13:37:12.753 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:27:59.823 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Aleksej Last Name is: null(might be null), userName is: aleksejpisarenko
+16:27:59.824 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:59:52.927 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Punt Last Name is: null(might be null), userName is: Punt73
+16:59:52.928 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:59:58.865 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Punt Last Name is: null(might be null), userName is: Punt73
+16:59:58.865 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+16:59:58.896 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+06:16:33.781 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: krutoi Last Name is: chuvak(might be null), userName is: Cheesovich
+06:16:33.784 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+06:16:40.136 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: krutoi Last Name is: chuvak(might be null), userName is: Cheesovich
+06:16:40.136 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+06:16:40.172 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:39:41.269 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Эдгар Last Name is: null(might be null), userName is: Yrenyy
+08:39:41.270 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:39:46.850 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Эдгар Last Name is: null(might be null), userName is: Yrenyy
+08:39:46.850 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:40:52.439 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Чеснок Last Name is: null(might be null), userName is: LVKOM
+08:40:52.439 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:40:55.687 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Чеснок Last Name is: null(might be null), userName is: LVKOM
+08:40:55.687 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+08:40:55.714 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:52:18.201 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: - Last Name is: null(might be null), userName is: biasshnikko
+08:52:18.202 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:52:21.745 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: - Last Name is: null(might be null), userName is: biasshnikko
+08:52:21.746 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Disabling schedule notifications
+08:52:21.768 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:52:23.452 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: - Last Name is: null(might be null), userName is: biasshnikko
+08:52:23.453 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Disabling schedule notifications
+08:52:23.473 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:52:23.953 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: - Last Name is: null(might be null), userName is: biasshnikko
+08:52:23.953 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Disabling schedule notifications
+08:52:23.976 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:52:24.448 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: - Last Name is: null(might be null), userName is: biasshnikko
+08:52:24.448 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Disabling schedule notifications
+08:52:24.469 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+08:52:26.552 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: - Last Name is: null(might be null), userName is: biasshnikko
+08:52:26.552 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - Enabling schedule notifications
+08:52:26.576 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:47:56.482 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+16:47:56.485 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+16:47:56.485 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+16:47:56.961 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:47:56.965 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:47:56.968 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:47:57.262 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:47:57.266 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:47:57.270 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:49:09.453 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+16:49:09.456 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+16:49:09.456 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+16:49:09.863 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:49:09.865 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:49:09.870 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:49:10.177 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:49:10.179 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:49:10.183 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:51:10.707 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+16:51:10.709 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+16:51:10.709 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+16:51:11.069 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:51:11.081 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:51:11.083 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:51:11.417 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:51:11.419 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:51:11.422 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:51:29.294 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+16:51:29.296 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+16:51:29.296 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+16:51:29.682 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:51:29.685 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:51:29.690 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:51:30.030 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:51:30.033 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:51:30.037 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:51:57.674 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+16:51:57.677 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+16:51:57.677 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+16:51:58.067 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:51:58.070 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:51:58.076 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:51:58.361 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:51:58.363 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:51:58.366 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:52:31.567 [main] DEBUG org.example.TelegramBot.ConfigManager - Database username was received
+16:52:31.570 [main] DEBUG org.example.TelegramBot.ConfigManager - Database password was received
+16:52:31.570 [main] DEBUG org.example.TelegramBot.ConfigManager - Database url was received
+16:52:31.954 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:52:31.963 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:52:31.965 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:52:32.304 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:52:32.306 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:52:32.310 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot name was received
+16:52:32.715 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:52:33.305 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '1507220304'
+16:52:33.306 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:52:33.514 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '5424359360'
+16:52:33.514 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:52:33.639 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '2051636905'
+16:52:33.640 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:52:33.734 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '5148191684'
+16:52:33.735 [main] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
+16:52:33.837 [main] INFO  org.example.TelegramBot.TelegramBot - Bot has sent a schedule link to user '900319428'
+17:45:37.036 [AJVSK_schedule_bot Telegram Executor] INFO  org.example.TelegramBot.TelegramBot - First Name is: Yourfault Last Name is: null(might be null), userName is: Yourfaultpr
+17:45:37.038 [AJVSK_schedule_bot Telegram Executor] DEBUG org.example.TelegramBot.ConfigManager - Bot token was received
