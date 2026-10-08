@@ -13,23 +13,26 @@ import java.net.URL;
 import java.util.HashMap;
 
 public class TelegramBot extends TelegramLongPollingBot {
+
     private static final String MENU = """
-            This bot can get a school schedule\
-            
-            Type /enableschedulenotifications to enable it\
-            
+            This bot can get a school schedule\\
+
+            Type /enableschedulenotifications to enable it\\
+
             Type /disableschedulenotifications to disable it""";
-    private static final Logger logger = LoggerFactory.getLogger(TelegramBot.class);
+
+    private static final Logger logger =
+            LoggerFactory.getLogger(TelegramBot.class);
+
     private static HashMap<String, Boolean> userTable = new HashMap<>();
 
     {
-	try {
-		userTable = DatabaseService.getUsers(this);
-		System.out.println(userTable);
-	}
-	catch (Exception e) {
-		
-	}
+        try {
+            userTable = DatabaseService.getUsers(this);
+            System.out.println(userTable);
+        } catch (Exception e) {
+	    e.printStackTrace();
+        }
     }
 
     @Override
@@ -45,22 +48,33 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         SendMessage sendMessage = new SendMessage();
+
         String chatId = update.getMessage().getChatId().toString();
         String text = update.getMessage().getText();
+
         sendMessage.setChatId(chatId);
+
         String toParse = update.getMessage().toString();
         logger.info(parseUsersInfo(toParse));
+
         try {
             if (text.equalsIgnoreCase("/disableScheduleNotifications")) {
                 logger.info("Disabling schedule notifications");
+
                 DatabaseService.updateUserDB(chatId, false);
-                sendMessage.setText("Schedule notification update system is turned off!");
+
+                sendMessage.setText(
+                        "Schedule notification update system is turned off!"
+                );
+
                 this.execute(sendMessage);
 
                 if (userTable.get(chatId).equals(Boolean.TRUE)) {
                     userTable.put(chatId, Boolean.FALSE);
                 } else {
-                    System.out.println("User has already had notifications turned off");
+                    System.out.println(
+                            "User has already had notifications turned off"
+                    );
                 }
 
                 System.out.println(userTable);
@@ -69,14 +83,24 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if (text.equalsIgnoreCase("/enableScheduleNotifications")) {
                 logger.info("Enabling schedule notifications");
+
                 DatabaseService.updateUserDB(chatId, true);
-                sendMessage.setText("Schedule notification update system is set!");
+
+                sendMessage.setText(
+                        "Schedule notification update system is set!"
+                );
+
                 this.execute(sendMessage);
 
-                if (userTable.get(chatId).equals(Boolean.FALSE) || userTable.get(chatId) == null) {
+                if (userTable.get(chatId).equals(Boolean.FALSE)
+                        || userTable.get(chatId) == null) {
+
                     userTable.put(chatId, Boolean.TRUE);
+
                 } else {
-                    System.out.println("User has already had notifications turned on");
+                    System.out.println(
+                            "User has already had notifications turned on"
+                    );
                 }
 
                 System.out.println(userTable);
@@ -85,35 +109,52 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             sendMessage.setText(MENU);
             this.execute(sendMessage);
+
         } catch (TelegramApiException e) {
-            logger.error("Something went wrong : {}", String.valueOf(e));
+            logger.error(
+                    "Something went wrong : {}",
+                    String.valueOf(e)
+            );
         }
     }
 
     public static String parseUsersInfo(String toParse) {
         HashMap<String, String> userInfoMap = new HashMap<>();
+
         toParse = toParse.substring(8, toParse.length() - 1);
+
         String[] usersInfo = toParse.split(",");
 
         for (String s : usersInfo) {
             String[] strings = s.split("=");
-            userInfoMap.put(strings[0].trim(), strings[1].trim());
+
+            userInfoMap.put(
+                    strings[0].trim(),
+                    strings[1].trim()
+            );
         }
 
         return "First Name is: " + userInfoMap.get("firstName")
                 + " Last Name is: " + userInfoMap.get("lastName")
-                + "(might be null), userName is: " + userInfoMap.get("userName");
+                + "(might be null), userName is: "
+                + userInfoMap.get("userName");
     }
 
     protected static class ScheduleCheck implements Runnable {
+
         private static final URL SCHEDULE_LINK;
-        private static final int HOURS_3 = 10_800_800; // 3 hours
 
         static {
             try {
-                SCHEDULE_LINK = new URL("https://aspazijasvsk.lv/wp-content/uploads/2026/09/Stundu-saraksts-7_09.pdf");
+                SCHEDULE_LINK = new URL(
+                        "https://aspazijasvsk.lv/macibu-process/izmainas-stundu-saraksta-ritdienai/"
+                );
             } catch (MalformedURLException e) {
-                logger.error("FAILED TO INITIALIZE SCHEDULE_LINK, cause -> {}", String.valueOf(e));
+                logger.error(
+                        "FAILED TO INITIALIZE SCHEDULE_LINK, cause -> {}",
+                        String.valueOf(e)
+                );
+
                 throw new RuntimeException(e);
             }
         }
@@ -127,50 +168,92 @@ public class TelegramBot extends TelegramLongPollingBot {
         @Override
         public void run() {
             SendMessage sendMessage = new SendMessage();
-            long lastRegisteredModifiedDate = DatabaseService.getLastRegisteredModifiedDate();
+
+            long lastRegisteredModifiedDate =
+                    DatabaseService.getLastRegisteredModifiedDate();
 
             while (true) {
                 try {
-                    HttpURLConnection connection = (HttpURLConnection) SCHEDULE_LINK.openConnection();
-                    connection.setRequestMethod("HEAD");
-                    long lastModified = connection.getLastModified();
+                    HttpURLConnection connection =
+                            (HttpURLConnection) SCHEDULE_LINK.openConnection();
 
-		    System.out.println(lastModified > (lastRegisteredModifiedDate + HOURS_3));
-		    System.out.println(lastRegisteredModifiedDate);
-		    System.out.println(lastModified);
+                    connection.setRequestMethod("GET");
+		    System.out.println(connection.getResponseCode());
+		    System.out.println(connection);
+                    long lastModified = connection.getContentLengthLong();
 
-                    if (lastModified > lastRegisteredModifiedDate + HOURS_3) { // Schedule "spam" protection (+ 3 hours)
+                    System.out.println("Database last modified: " + lastRegisteredModifiedDate);
+                    System.out.println("Connection last modified: " + lastModified);
+
+                    if (lastModified != lastRegisteredModifiedDate) {
+
                         lastRegisteredModifiedDate = lastModified;
-                        DatabaseService.updateScheduleDB(lastModified);
-			try {
+
+                        DatabaseService.updateScheduleDB(
+                                lastModified
+                        );
+
+                        try {
                             for (String chatId : userTable.keySet()) {
+
                                 System.out.println(chatId);
-                                if (userTable.get(chatId).equals(Boolean.TRUE)) {
+
+                                if (userTable.get(chatId)
+                                        .equals(Boolean.TRUE)) {
+
                                     try {
-                                        sendMessage.setText("New schedule arrived!\n" + SCHEDULE_LINK);
+                                        sendMessage.setText(
+                                                "New schedule arrived!\n"
+                                                        + SCHEDULE_LINK
+                                        );
+
                                         sendMessage.setChatId(chatId);
+
                                         bot.execute(sendMessage);
-                                        logger.info("Bot has sent a schedule link to user " + "'" + chatId + "'");
+
+                                        logger.info(
+                                                "Bot has sent a schedule link to user '{}'",
+                                                chatId
+                                        );
+
                                     } catch (Exception e) {
-                                        logger.error("Something went wrong sending message " + e);
+                                        logger.error(
+                                                "Something went wrong sending message",
+                                                e
+                                        );
                                     }
                                 }
                             }
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+
                     } else {
                         System.out.println("rejected update");
                     }
+
                     connection.disconnect();
+
                 } catch (Exception e) {
-                    logger.error("Error occurred, cause -> {}", String.valueOf(e));
+                    logger.error(
+                            "Error occurred, cause -> {}",
+                            String.valueOf(e)
+                    );
                 }
+
                 try {
                     Thread.sleep(300000);
+
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
-                    logger.error("Error occurred with thread sleeping object -> {}, cause -> {}", this, e);
+
+                    logger.error(
+                            "Error occurred with thread sleeping object -> {}, cause -> {}",
+                            this,
+                            e
+                    );
+
                     break;
                 }
             }
